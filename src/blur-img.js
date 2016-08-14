@@ -9,26 +9,21 @@
 
     /**
      * initialize default config
-     * container   Node     wrapper for image
-     * smSrc       String   src of small image
-     * lgSrc       String   src of large image
-     * transTime   String   time of the transition
+     * containers   Node Set     wrappers for images
+     * smSrcs       Array        src of small image
+     * lgSrcs       Array        src of large image
+     * transTime    String       time of the transition
      */
     var defaultConfig = {
-        container: '',
-        smSrc: '',
-        lgSrc: '',
+        containers: '',
+        smSrcs: '',
+        lgSrcs: '',
         transTime: '2s'
     };
-
-    // create the small image and the large image
-    var smImg = new Image(),
-        lgImg = new Image();
 
     // style rules
     var containerStyle = {
             position: 'relative',
-            background: '#f6f6f6 no-repeat',
             backgroundSize: 'cover',
             overflow: 'hidden'
         },
@@ -47,8 +42,7 @@
         },
         loadedStyle = {
             opacity: 1
-        },
-        placeholder = document.createElement('div');
+        };
 
     /**
      * set style rules for specified element
@@ -84,6 +78,18 @@
     }
 
     /**
+     * tell the srcs is empty or not
+     * @returns {boolean}
+     */
+    function srcIsEmpty() {
+        var srcs = [].slice.call(arguments);
+
+        return srcs.every(function ( elem ) {
+            return Object.prototype.toString.apply(elem).slice(8, -1) === 'Array' && elem.length === 0;
+        });
+    }
+
+    /**
      * main function to blur image
      * @param config
      */
@@ -92,32 +98,46 @@
         // extend the origin config object
         config = extendObj({}, defaultConfig, config);
 
-        var imgContainer = config.container,
-            smImgUrl = config.smSrc,
-            lgImgUrl = config.lgSrc;
+        var imgContainers = config.containers,
+            smImgSrcs = config.smSrcs,
+            lgImgSrcs = config.lgSrcs;
 
         var transitionStyle = {
             transition: 'all ' + config.transTime + ' linear'
         };
 
-        setStyle(imgContainer, containerStyle);
-        placeholder.style.paddingBottom = '66.66%';
-        imgContainer.appendChild(placeholder);
+        if ( srcIsEmpty(smImgSrcs, lgImgSrcs) ) {
+            throw new Error('Can\'t find any image to load.');
+        }
 
-        setStyle(smImg, commonImgStyle);
-        setStyle(lgImg, commonImgStyle);
+        // set image for every container
+        imgContainers.forEach(function ( elem, index ) {
+            var placeholder = document.createElement('div');
 
-        smImg.src = smImgUrl;
-        smImg.onload = function () {
-            setStyle(smImg, smStyle, loadedStyle);
-        };
-        imgContainer.insertBefore(smImg, placeholder);
+            // create the small image and the large image
+            var smImg = new Image(),
+                lgImg = new Image();
 
-        lgImg.src = lgImgUrl;
-        lgImg.onload = function () {
-            setStyle(lgImg, transitionStyle, loadedStyle);
-        };
-        imgContainer.insertBefore(lgImg, placeholder);
+            setStyle(elem, containerStyle);
+            placeholder.style.paddingBottom = '66.66%';
+            elem.appendChild(placeholder);
+
+            setStyle(smImg, commonImgStyle);
+            setStyle(lgImg, commonImgStyle);
+
+            smImg.src = smImgSrcs[index];
+            smImg.onload = function () {
+                setStyle(smImg, smStyle, loadedStyle);
+            };
+            elem.insertBefore(smImg, placeholder);
+
+            lgImg.src = lgImgSrcs[index];
+            lgImg.onload = function () {
+                setStyle(lgImg, transitionStyle, loadedStyle);
+            };
+
+            elem.insertBefore(lgImg, placeholder);
+        });
     }
 
     window.blurImg = blurImg;
