@@ -8,6 +8,49 @@
 (function ( window ) {
 
     /**
+     * initialize default config
+     * container   Node     wrapper for image
+     * smSrc       String   src of small image
+     * lgSrc       String   src of large image
+     * transTime   String   time of the transition
+     */
+    var defaultConfig = {
+        container: '',
+        smSrc: '',
+        lgSrc: '',
+        transTime: '2s'
+    };
+
+    // create the small image and the large image
+    var smImg = new Image(),
+        lgImg = new Image();
+
+    // style rules
+    var containerStyle = {
+            position: 'relative',
+            background: '#f6f6f6 no-repeat',
+            backgroundSize: 'cover',
+            overflow: 'hidden'
+        },
+        commonImgStyle = {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            opacity: 0,
+        },
+
+        // style for small image
+        smStyle = {
+            filter: 'blur(50px)',
+            transform: 'scale(1)'
+        },
+        loadedStyle = {
+            opacity: 1
+        },
+        placeholder = document.createElement('div');
+
+    /**
      * set style rules for specified element
      * @param elem
      */
@@ -45,50 +88,24 @@
      * @param config
      */
     function blurImg( config ) {
-        var defaultConfig = {
-            container: '',
-            smSrc: '',
-            lgSrc: ''
-        };
 
+        // extend the origin config object
         config = extendObj({}, defaultConfig, config);
 
-        var smImg = new Image(),
-            lgImg = new Image(),
-            imgContainer = config.container,
+        var imgContainer = config.container,
             smImgUrl = config.smSrc,
-            lgImgUrl = config.lgSrc,
-            containerStyle = {
-                position: 'relative',
-                background: '#f6f6f6 no-repeat',
-                backgroundSize: 'cover',
-                overflow: 'hidden'
-            },
-            generalImgStyle = {
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                opacity: 0,
-            },
-            transitionStyle = {
-                transition: 'all 2s ease-in-out'
-            },
-            smStyle = {
-                filter: 'blur(50px)',
-                transform: 'scale(1)'
-            },
-            loadedStyle = {
-                opacity: 1
-            },
-            placeholder = document.createElement('div');
+            lgImgUrl = config.lgSrc;
+
+        var transitionStyle = {
+            transition: 'all ' + config.transTime + ' linear'
+        };
 
         setStyle(imgContainer, containerStyle);
         placeholder.style.paddingBottom = '66.66%';
         imgContainer.appendChild(placeholder);
 
-        setStyle(smImg, generalImgStyle);
-        setStyle(lgImg, generalImgStyle);
+        setStyle(smImg, commonImgStyle);
+        setStyle(lgImg, commonImgStyle);
 
         smImg.src = smImgUrl;
         smImg.onload = function () {
