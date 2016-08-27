@@ -37,7 +37,6 @@
 
         // style for small image
         smStyle = {
-            filter: 'blur(50px)',
             transform: 'scale(1)'
         },
         loadedStyle = {
@@ -119,7 +118,7 @@
                 lgImg = new Image();
 
             setStyle(elem, containerStyle);
-            placeholder.style.paddingBottom = '66.66%';
+            placeholder.style.paddingBottom = '50%';
             elem.appendChild(placeholder);
 
             setStyle(smImg, commonImgStyle);

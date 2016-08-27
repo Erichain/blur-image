@@ -1,0 +1,20 @@
+html {
+    font-family: "Times New Roman", monospace;
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 2rem;
+    padding: 2rem 4rem;
+}
+
+header {
+    min-height: 5rem;
+    font-size: 4rem;
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-ideograph;
+}

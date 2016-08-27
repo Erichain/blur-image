@@ -2,6 +2,5 @@
 bower_comonents/
 node_modules/
 *.map
-*.css
 .sass-cache/
 .DS_store

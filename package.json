@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/Erichain/Blur-Image#readme",
   "devDependencies": {
-    "uglify-loader": "^1.3.0"
+    "open-browser-webpack-plugin": "0.0.2",
+    "uglify-loader": "^1.3.0",
+    "webpack": "^1.13.2"
   }
 }
