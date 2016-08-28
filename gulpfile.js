@@ -24,7 +24,7 @@ const rootApp = {
         scripts: [`${rootApp.app}/src/blur-img.js`],
         styles: [`${rootApp.app}/src/blur-img.css`],
         views: {
-            main: `${rootApp.app}/src/index.html`
+            main: `${rootApp.app}/example/index.html`
         }
     };
 
@@ -35,7 +35,7 @@ gulp.task('lint:scripts', () => {
 
 gulp.task('start:server', () => {
     connect.server({
-        root: [rootApp.app + '/example'],
+        root: [rootApp.app],
         livereload: {
             port: 35730
         },
@@ -45,7 +45,7 @@ gulp.task('start:server', () => {
 
 gulp.task('start:client', ['start:server'], () => {
     var options = {
-        uri: 'http://0.0.0.0:9007',
+        uri: 'http://0.0.0.0:9007/example/',
         app: 'Google Chrome'
     };
 
