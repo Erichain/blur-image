@@ -6,31 +6,45 @@
  * @date 8/14/16
  */
 (function ( window ) {
+    'use strict';
 
     var containers = document.getElementsByName('blur');
 
-    containers.forEach(function ( elem, index ) {
-        var thumbSrc = elem.getAttribute('data-src'),
-            lgSrc = elem.getAttribute('src'),
-            realWidth = elem.getAttribute('data-real-width'),
-            realHeight = elem.getAttribute('data-real-height');
+    function setStyle( elem, className ) {
+        if ( elem.classList ) {
+            elem.classList.add(className);
+        }
+        else {
+            elem.className += ' ' + className;
+        }
+    }
 
-        elem.style.paddingBottom = (realHeight / realWidth) * 100 + '%';
+    function blurImg() {
+        containers.forEach(function ( elem, index ) {
+            var thumbSrc = elem.getAttribute('data-src'),
+                lgSrc = elem.getAttribute('src'),
+                realWidth = elem.getAttribute('data-real-width'),
+                realHeight = elem.getAttribute('data-real-height');
 
-        var thumb = new Image();
-        thumb.src = thumbSrc;
-        thumb.onload = function () {
-            thumb.classList.add('thumb-loaded');
-        };
-        elem.appendChild(thumb);
+            elem.style.paddingBottom = (realHeight / realWidth) * 100 + '%';
 
-        var realImg = new Image();
-        realImg.src = lgSrc;
-        realImg.onload = function () {
-            realImg.classList.add('large-loaded');
-            thumb.classList.add('thumb-hidden');
-        };
-        elem.appendChild(realImg);
-    });
+            var thumb = new Image();
+            thumb.src = thumbSrc;
+            thumb.onload = function () {
+                setStyle(thumb, 'thumb-loaded');
+            };
+            elem.appendChild(thumb);
+
+            var realImg = new Image();
+            realImg.src = lgSrc;
+            realImg.onload = function () {
+                setStyle(realImg, 'large-loaded');
+                setStyle(thumb, 'thumb-hidden');
+            };
+            elem.appendChild(realImg);
+        });
+    }
+
+    window.blurImg = blurImg;
 
 })( window );
