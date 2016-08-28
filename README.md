@@ -6,32 +6,32 @@ A plugin used to make blur effect on image that needs to be preloaded.
 **Use bower**
 
 ``` shell
-bower install --save blur-img
+bower install --save blur-image
 ```
 
 Then, you just import the JavaScript file and Style file into your page as following.
 
 ``` html
-<link rel="stylesheet" href="bower_components/blur-img/dist/blur-img.css">
-<script src="bower_components/blur-img/dist/blur-img.js"></script>
+<link rel="stylesheet" href="bower_components/blur-image/dist/blur-image.css">
+<script src="bower_components/blur-image/dist/blur-image.js"></script>
 ```
 
 **Use npm packager**
 
 ``` shell
-npm install --save blur-img
+npm install --save blur-image
 ```
 
 And import the files.
 
 ``` html
-<link rel="stylesheet" href="node_modules/blur-img/dist/blur-img.css">
+<link rel="stylesheet" href="node_modules/blur-image/dist/blur-image.css">
 ```
 
 In your JavaScript file, you can use `require` to import.
 
 ``` javascript
-let blurImg = require('blur-img');
+let blurImg = require('blur-image');
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ In HTML, just add tags with the following attributes:
 
 ``` html
 <figure name="blur"
-        class="blur-img-container"
+        class="blur-image-container"
         data-real-width="1174"
         data-real-height="670"
         data-src="images/sm2.jpeg"
@@ -50,7 +50,7 @@ In HTML, just add tags with the following attributes:
 ```
 
 - `name`: Must be `blur`.
-- `class`: Must be `blur-img-container` (Of course, you can change this in the css file).
+- `class`: Must be `blur-image-container` (Of course, you can change this in the css file).
 - `data-real-width`: Your image's real width.
 - `data-real-height`: Your image's real height.
 - `data-src`: The small image url to load first in you local directory.
@@ -61,6 +61,18 @@ Then, in your `app.js`, just one line, you're all done.
 ``` javascript
 blurImg();
 ```
+
+## Build
+
+``` shell
+git clone https://github.com/Erichain/blur-image.git
+```
+
+Run `npm install`.
+
+Run `npm run dev` to start local development.
+
+Run `npm run build` to build.
 
 ## License
 

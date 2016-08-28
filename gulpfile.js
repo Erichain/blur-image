@@ -21,8 +21,8 @@ const rootApp = {
 
     /* files paths */
     paths = {
-        scripts: [`${rootApp.app}/src/blur-img.js`],
-        styles: [`${rootApp.app}/src/blur-img.css`],
+        scripts: [`${rootApp.app}/src/blur-image.js`],
+        styles: [`${rootApp.app}/src/blur-image.css`],
         views: {
             main: `${rootApp.app}/example/index.html`
         }
@@ -73,7 +73,7 @@ gulp.task('clean:dist', ( cb ) => {
 
 // compress js and css and rename them
 gulp.task('compress', () => {
-    gulp.src(`${rootApp.app}/src/blur-img.js`)
+    gulp.src(`${rootApp.app}/src/blur-image.js`)
         .pipe(babel({
             presets: ['es2015']
         }))

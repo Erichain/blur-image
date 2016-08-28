@@ -2,17 +2,17 @@
   "name": "blur-image",
   "version": "0.1.0",
   "description": "A plugin used to make blur effect on image that needs to be preloaded.",
-  "main": "webpack.config.js",
+  "main": "gulpfile.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline",
-    "build": "webpack"
+    "dev": "gulp serve",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Erichain/Blur-Image.git"
+    "url": "git+https://github.com/Erichain/blur-image.git"
   },
   "keywords": [
     "preload"
@@ -20,9 +20,9 @@
   "author": "Erichain",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Erichain/Blur-Image/issues"
+    "url": "https://github.com/Erichain/blur-image/issues"
   },
-  "homepage": "https://github.com/Erichain/Blur-Image#readme",
+  "homepage": "https://github.com/Erichain/blur-image#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.14.0",
     "gulp": "^3.9.1",
