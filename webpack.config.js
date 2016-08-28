@@ -11,7 +11,7 @@ module.exports = {
     entry: './src/blur-img.js',
     output: {
         path: './dist',
-        filename: 'blur-img.js'
+        filename: 'blur-img.min.js'
     },
     module: {
         loaders: [
@@ -20,8 +20,12 @@ module.exports = {
                 exclude: /.spec.js/,
                 loader: 'uglify'
             }, {
-                test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
+                test: /\.js$/,
+                exclude: /(bower_components|node_modules)/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015']
+                }
             }
         ]
     },

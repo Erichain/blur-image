@@ -4,3 +4,4 @@ node_modules/
 *.map
 .sass-cache/
 .DS_store
+npm-debug.log
