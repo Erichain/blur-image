@@ -5,45 +5,49 @@
  * @author Erichain
  * @date 8/14/16
  */
-(function ( window ) {
+(( window ) => {
     'use strict';
 
-    var containers = document.getElementsByName('blur');
+    // get all the image containers from page
+    let containers = document.getElementsByName('blur');
 
-    function setStyle( elem, className ) {
+    // add class to corresponding element
+    let setStyle = ( elem, className ) => {
         if ( elem.classList ) {
             elem.classList.add(className);
         }
         else {
-            elem.className += ' ' + className;
+            elem.className += ` ${className}`;
         }
-    }
+    };
 
-    function blurImg() {
-        containers.forEach(function ( elem, index ) {
-            var thumbSrc = elem.getAttribute('data-src'),
+    // main function to blur images
+    let blurImg = () => {
+        containers.forEach(( elem, index ) => {
+            let thumbSrc = elem.getAttribute('data-src'),
                 lgSrc = elem.getAttribute('src'),
                 realWidth = elem.getAttribute('data-real-width'),
                 realHeight = elem.getAttribute('data-real-height');
 
-            elem.style.paddingBottom = (realHeight / realWidth) * 100 + '%';
+            // set a bottom padding to avoid glimmer
+            elem.style.paddingBottom = `${(realHeight / realWidth) * 100}%`;
 
-            var thumb = new Image();
+            let thumb = new Image();
             thumb.src = thumbSrc;
-            thumb.onload = function () {
+            thumb.onload = () => {
                 setStyle(thumb, 'thumb-loaded');
             };
             elem.appendChild(thumb);
 
-            var realImg = new Image();
+            let realImg = new Image();
             realImg.src = lgSrc;
-            realImg.onload = function () {
+            realImg.onload = () => {
                 setStyle(realImg, 'large-loaded');
                 setStyle(thumb, 'thumb-hidden');
             };
             elem.appendChild(realImg);
         });
-    }
+    };
 
     window.blurImg = blurImg;
 

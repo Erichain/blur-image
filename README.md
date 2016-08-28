@@ -28,6 +28,8 @@ And import the files.
 <link rel="stylesheet" href="node_modules/blur-img/dist/blur-img.css">
 ```
 
+In your JavaScript file, you can use `require` to import.
+
 ``` javascript
 let blurImg = require('blur-img');
 ```
@@ -54,7 +56,7 @@ In HTML, just add tags with the following attributes:
 - `data-src`: The small image url to load first in you local directory.
 - `src`: The large image's url.
 
-Then, in your `app.js`, just one line, yes, that's it , you're all done.
+Then, in your `app.js`, just one line, you're all done.
 
 ``` javascript
 blurImg();
