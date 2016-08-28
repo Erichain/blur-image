@@ -1,6 +1,10 @@
 # Blur-Image
 A plugin used to make blur effect on image that needs to be preloaded.
 
+Just as Medium does:
+
+![](http://recordit.co/ZuaKyenT0m)
+
 ## Install
 
 **Use bower**

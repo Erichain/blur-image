@@ -1,1 +1,28 @@
-{}
+{
+  "name": "blur-image",
+  "description": "A plugin used to make blur effect on image that needs to be preloaded.",
+  "main": "gulpfile.js",
+  "authors": [
+    "Erichain"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "preload"
+  ],
+  "homepage": "https://github.com/Erichain/blur-image",
+  "moduleType": [
+    "es6"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "example",
+    "package.json",
+    ".npmignore",
+    "gulpfile.js"
+  ]
+}
