@@ -1,6 +1,6 @@
 {
   "name": "blur-image",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A plugin used to make blur effect on image that needs to be preloaded.",
   "main": "gulpfile.js",
   "directories": {
