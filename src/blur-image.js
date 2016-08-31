@@ -26,7 +26,7 @@
         containers = [...containers];
 
         if ( containers.length === 0 ) {
-            return;
+            throw new Error('You have\'t add any photo!');
         }
         containers.forEach(( elem, index ) => {
             let thumbSrc = elem.getAttribute('data-src'),
