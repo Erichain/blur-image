@@ -23,6 +23,11 @@
 
     // main function to blur images
     let blurImg = () => {
+        containers = [...containers];
+
+        if ( containers.length === 0 ) {
+            return;
+        }
         containers.forEach(( elem, index ) => {
             let thumbSrc = elem.getAttribute('data-src'),
                 lgSrc = elem.getAttribute('src'),
