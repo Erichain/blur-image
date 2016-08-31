@@ -1,5 +1,7 @@
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /**
  * @description
  * A plugin used to make blur effect on image
@@ -25,6 +27,11 @@
 
     // main function to blur images
     var blurImg = function blurImg() {
+        containers = [].concat(_toConsumableArray(containers));
+
+        if (containers.length === 0) {
+            throw new Error('You have\'t add any photo!');
+        }
         containers.forEach(function (elem, index) {
             var thumbSrc = elem.getAttribute('data-src'),
                 lgSrc = elem.getAttribute('src'),

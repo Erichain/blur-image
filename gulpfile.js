@@ -33,6 +33,11 @@ gulp.task('lint:scripts', () => {
         .pipe(connect.reload());
 });
 
+gulp.task('html', () => {
+    gulp.src(paths.views.main)
+        .pipe(connect.reload());
+});
+
 gulp.task('start:server', () => {
     connect.server({
         root: [rootApp.app],
@@ -54,8 +59,9 @@ gulp.task('start:client', ['start:server'], () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch(paths.styles);
-    gulp.watch(paths.scripts, ['lint:scripts']);
+    gulp.watch(paths.views.main, ['html']);
+    gulp.watch(paths.styles, ['compress']);
+    gulp.watch(paths.scripts, ['lint:scripts', 'compress']);
 });
 
 gulp.task('serve', ( cb ) => {
