@@ -5,18 +5,17 @@
  * @author Erichain
  * @date 8/14/16
  */
-(( window ) => {
+((window) => {
     'use strict';
 
     // get all the image containers from page
     let containers = document.getElementsByName('blur');
 
     // add class to corresponding element
-    let setStyle = ( elem, className ) => {
-        if ( elem.classList ) {
+    let setStyle = (elem, className) => {
+        if (elem.classList) {
             elem.classList.add(className);
-        }
-        else {
+        } else {
             elem.className += ` ${className}`;
         }
     };
@@ -25,10 +24,10 @@
     let blurImg = () => {
         containers = [...containers];
 
-        if ( containers.length === 0 ) {
+        if (containers.length === 0) {
             throw new Error('You have\'t add any photo!');
         }
-        containers.forEach(( elem, index ) => {
+        containers.forEach((elem) => {
             let thumbSrc = elem.getAttribute('data-src'),
                 lgSrc = elem.getAttribute('src'),
                 realWidth = elem.getAttribute('data-real-width'),
@@ -56,4 +55,4 @@
 
     window.blurImg = blurImg;
 
-})( window );
+})(window);
